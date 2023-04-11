@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../../../layouts/Layout.astro';
 import Card from '../../../components/Card.astro';
 
@@ -10,7 +12,7 @@ const { category0 } = Astro.params;
 const cate = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/categories0/category/${import.meta.env.SITE_UID}/${category0}`, {method: "GET"});
 const data = await cate.json()
 
-console.log('data', data)
+// console.log('data', data)
 export function getStaticPaths() {
   return categories.map((data:any) => ({params: {category0: data.paths[1]}}))
 }
@@ -29,7 +31,7 @@ export function getStaticPaths() {
 		<ul role="list" class="link-card-grid">
 			{
         data.data.type.slug === 'category' &&
-				data.categories.map((data: any) => (
+				data.categories?.map((data: any) => (
 
 					<Card
 						href={`/blog/${data.slug}`}

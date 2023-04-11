@@ -6,7 +6,7 @@ import Card from '../../components/Card.astro';
 const res = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/pages/page/${import.meta.env.SITE_UID}/blog`, {method: "GET"});
 
 const blogs = await res.json()
-console.log('blogs', blogs)
+// console.log('blogs', blogs)
 ---
 
 <Layout title="Blog">
