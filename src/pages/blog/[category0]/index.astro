@@ -1,5 +1,5 @@
 ---
-export const prerender = true;
+// export const prerender = true;
 
 import Layout from '../../../layouts/Layout.astro';
 import Card from '../../../components/Card.astro';
@@ -7,15 +7,16 @@ import Card from '../../../components/Card.astro';
 const res = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/categories0/siteId/${import.meta.env.SITE_UID}`, {method: "GET"});
 const categories = await res.json()
 
+export function getStaticPaths() {
+  return categories.map((data:any) => ({params: {category0: data.paths[1]}}))
+}
+
 const { category0 } = Astro.params;
 
 const cate = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/categories0/category/${import.meta.env.SITE_UID}/${category0}`, {method: "GET"});
 const data = await cate.json()
 
 // console.log('data', data)
-export function getStaticPaths() {
-  return categories.map((data:any) => ({params: {category0: data.paths[1]}}))
-}
 
 // console.log('category0', category0)
 
