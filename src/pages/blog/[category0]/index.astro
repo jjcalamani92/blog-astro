@@ -4,10 +4,11 @@
 import Layout from '../../../layouts/Layout.astro';
 import Card from '../../../components/Card.astro';
 
-const res = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/categories0/siteId/${import.meta.env.SITE_UID}`, {method: "GET"});
-const categories = await res.json()
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const res = await fetch(`${import.meta.env.SITE_URL}/api/portfolio/categories0/siteId/${import.meta.env.SITE_UID}`, {method: "GET"});
+  const categories = await res.json()
+
   return categories.map((data:any) => ({params: {category0: data.paths[1]}}))
 }
 
