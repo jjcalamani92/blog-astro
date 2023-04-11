@@ -25,10 +25,22 @@ export function getStaticPaths() {
 		<!-- <p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		</p> -->
 		<ul role="list" class="link-card-grid">
 			{
-				blogs.categories.map((data: any) => (
+        data.data.type.slug === 'category' &&
+				data.categories.map((data: any) => (
+
+					<Card
+						href={`/blog/${data.slug}`}
+						title={data.data.name}
+						body="Learn how Astro works and explore the official API docs."
+					/>
+				))
+			}
+			{
+        data.data.type.slug === 'blog' &&
+				data.articles.map((data: any) => (
 
 					<Card
 						href={`/blog/${data.slug}`}
@@ -38,7 +50,7 @@ export function getStaticPaths() {
 				))
 			}
 			
-		</ul> -->
+		</ul>
 	</main>
 </Layout>
 
